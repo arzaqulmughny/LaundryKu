@@ -5,7 +5,7 @@
 
     <select name="{{ $name }}" id="{{ $name }}" {{ $attributes }} class="w-full text-sm px-3 py-2.5 focus:outline-blue-400 text-slate-800 border-gray-300 border rounded-md">
         @foreach ($options as $option)
-        <option value="{{ $option }}">{{ $option }}</option>
+        <option value="{{ $option }}" {{ $value == $option ? 'selected' : '' }}>{{ $option }}</option>
         @endforeach
     </select>
 
