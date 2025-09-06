@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Route;
 
 // Login routes
@@ -16,4 +17,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Customers
     Route::resource('customers', CustomerController::class);
+
+    // Services
+    Route::resource('services', ServiceController::class);
 });

@@ -24,4 +24,10 @@
 </script>
 @endif
 
+@if(session('error'))
+<script>
+    alert('{{ session('error') }}');
+</script>
+@endif
+
 </html>
