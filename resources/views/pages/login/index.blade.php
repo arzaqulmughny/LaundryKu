@@ -2,7 +2,6 @@
 @section('title', 'Login - LaundryKu')
 
 @section('content')
-
 <div class="bg-slate-100 w-full h-screen flex justify-center items-center">
     <form action="{{ route('login.post') }}" method="POST">
         <div class="bg-white flex flex-col p-10 rounded-lg shadow-md gap-y-6">

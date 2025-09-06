@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -10,7 +12,8 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', function () {
-        return "Dashboard";
-    })->name('home');
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+    // Customers
+    Route::resource('customers', CustomerController::class);
 });

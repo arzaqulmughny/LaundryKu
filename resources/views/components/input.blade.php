@@ -1,10 +1,10 @@
-@props(['label', 'name', 'type' => 'text', 'placeholder' => '', 'value' => old($name)])
+@props(['label', 'name', 'type' => 'text', 'placeholder' => '', 'value' => old($name), 'required' => false])
 
 <div class="flex flex-col gap-y-1">
-    <label for="{{ $name }}" class="text-sm font-medium text-gray-700">{{ $label }}</label>
+    <x-input-label :label="$label" :name="$name" :required="$required" />
 
     <div class="relative flex items-center">
-        <input type="{{ $name }}" autocomplete="off" id="{{ $name }}" name="{{ $name }}" class="w-full text-sm px-3 py-2 focus:outline-blue-400 text-slate-800 border-gray-300 border rounded-md" placeholder="{{ $placeholder }}" value="{{ $value }}">
+        <input type="{{ $name }}" autocomplete="off" id="{{ $name }}" name="{{ $name }}" class="w-full text-sm px-3 py-2 focus:outline-blue-400 text-slate-800 border-gray-300 border rounded-md" placeholder="{{ $placeholder }}" value="{{ $value }}" {{ $attributes }}>
 
         @if($type == 'password')
         <button type="button" class="absolute right-4 w-4 flex cursor-pointer" onclick="toggleInputPasswordVisibility(event)">
