@@ -1,4 +1,4 @@
-@props(['label', 'name', 'required' => false])
+@props(['label', 'name' => "", 'required' => false])
 
 <label
     for="{{ $name }}"

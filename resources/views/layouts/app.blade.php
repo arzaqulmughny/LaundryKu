@@ -7,16 +7,24 @@
     <title>{{ trim($__env->yieldContent('title')) ? $__env->yieldContent('title') . ' - ' : '' }}LaundryKu
     </title>
     @vite(['resources/css/app.css'])
-
+    @livewireStyles
 </head>
 
 <body class="bg-slate-100">
     @yield('content')
+    @livewireScripts
 </body>
 
 @vite(['resources/js/app.js'])
 
 @stack('scripts')
+
+<script>
+    // Listen event from livewire
+    window.addEventListener('show-alert', event => {
+        alert(event.detail[0].message);
+    });
+</script>
 
 @if(session('success'))
 <script>

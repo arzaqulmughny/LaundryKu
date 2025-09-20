@@ -1,6 +1,6 @@
-@props(['label', 'name', 'required' => false, 'value' => true])
-
-<div class="flex items-center gap-x-2">
-    <input type="checkbox" name="{{ $name }}" id="{{ $name }}" value="{{ $value }}" {{ $attributes }}>
-    <x-input-label :label="$label" :name="$name" :required="$required" />
-</div>
+@props(['label', 'name', 'required' => false, 'value' => true, 'type' => 'checkbox'])
+<label class="flex items-center gap-x-2" for="{{ $name }}-{{ $value }}">
+    <input {{ $attributes }} type="{{ $type }}" name="{{ $name }}"
+        id="{{ $name }}-{{ $value }}" value="{{ $value }}">
+    <span class="text-sm">{{ $label }}</span>
+</label>
