@@ -36,7 +36,7 @@ $links = [
 ]
 @endphp
 
-<nav>
+<nav class="h-screen">
     <div class="flex items-center p-5 py-10 gap-x-5 ">
         <div class="w-10">
             <img src="https://placehold.co/400" alt="">
