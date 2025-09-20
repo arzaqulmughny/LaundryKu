@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\Transaction;
 use App\Models\TransactionService;
 use App\Repositories\TransactionRepository;
+use App\Services\WhatsappMessageService;
 use Exception;
 use Illuminate\Support\Facades\Request;
 use Livewire\Attributes\On;
@@ -18,6 +19,7 @@ class Create extends Component
 
     public $date, $due_date, $payment_status = 1, $total_paid = 0, $services = [], $id = null, $status;
     public ?Customer $customer;
+    public ?Transaction $transaction;
 
     public $statusEnums = [
         0 => 'Dalam Antrian',
@@ -43,6 +45,8 @@ class Create extends Component
                     'id' => $service->id
                 ], $this->getServiceArray($service));
             });
+
+            $this->transaction = $transaction;
         } else {
             $this->date = date('Y-m-d');
         }
@@ -128,6 +132,15 @@ class Create extends Component
     {
         $this->services[$selectedIndex]['quantity'] = $newQuantity;
         $this->services[$selectedIndex]['total'] = $this->services[$selectedIndex]['service_price'] * $newQuantity;
+    }
+
+    public function getWhatsappMessageLink()
+    {
+        if (empty($this->id)) {
+            return "";
+        }
+
+        return WhatsappMessageService::generateWhatsappMessage($this->transaction);
     }
 
     /**
