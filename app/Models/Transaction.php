@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 
 class Transaction extends Model
@@ -108,5 +109,13 @@ class Transaction extends Model
     public function getFormattedDateAttribute()
     {
         return Carbon::parse($this->date)->format('d-m-Y');
+    }
+
+    /**
+     * Define relationship for pays
+     */
+    public function pays(): HasMany
+    {
+        return $this->hasMany(TransactionPay::class, 'transaction_id', 'id');
     }
 }

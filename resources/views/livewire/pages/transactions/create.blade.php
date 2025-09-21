@@ -1,6 +1,7 @@
 <div>
     <livewire:pages.transactions.add-service-modal />
     <livewire:pages.transactions.select-customer-modal />
+    <livewire:pages.transactions.add-pay-modal />
 
     <div class="mx-5 mt-5 flex flex-col gap-y-3">
         <x-breadcrumbs :links="[
@@ -10,7 +11,7 @@
     ]" />
 
         <div class="flex flex-col gap-y-5">
-            <x-header :title="$pageTitle" subtitle="Masukkan data transaksi di sini" />
+            <x-header :title="$pageTitle" :subtitle="$pageSubtitle" />
 
             <div class="flex justify-between items-center">
                 <a href="/transactions">
@@ -27,7 +28,7 @@
 
                 <div class="flex items-center gap-x-2">
                     @if ($id == null)
-                        <x-button variant="danger" wire:click="resetForm">Reset</x-button>
+                    <x-button variant="danger" wire:click="resetForm">Reset</x-button>
                     @endif
 
                     @if ($id)
@@ -75,7 +76,7 @@
                         @csrf
                         @method('POST')
 
-                        <div class="flex flex-col gap-y-1">
+                        <div class="flex flex-col g2ap-y-1">
                             <div class="flex flex-col gap-y-1">
                                 <x-input-label label="Pilih Pelanggan" required />
 
@@ -118,8 +119,8 @@
                             @enderror
                         </div>
 
-                        <x-input label="Tanggal Transaksi" name="date" type="date" value="{{ date('Y-m-d') }}" required wire:model="date" disabled="!empty($id)" />
-                        <x-input label="Tanggal Diambil" name="due_date" type="date" required wire:model="due_date" disabled="!empty($id)" />
+                        <x-input label="Tanggal Transaksi" name="date" type="date" value="{{ date('Y-m-d') }}" required wire:model="date" :disabled="!empty($id)" />
+                        <x-input label="Tanggal Diambil" name="due_date" type="date" required wire:model="due_date" :disabled="!empty($id)" />
 
                         <div class="flex flex-col gap-y-2">
                             <x-input-label label="Pembayaran" required />
@@ -128,11 +129,11 @@
                                 <div>
                                     <div class="flex gap-x-5 flex-wrap gap-y-2">
                                         <x-checkbox type="radio" label="Sekarang" name="payment_status" value="0"
-                                            wire:model.live="payment_status" disabled="!empty($id)" />
+                                            wire:model.live="payment_status" :disabled="!empty($id)" />
                                         <x-checkbox type="radio" label="Uang Muka" name="payment_status" value="1"
-                                            wire:model.live="payment_status" disabled />
+                                            wire:model.live="payment_status" :disabled="!empty($id)" />
                                         <x-checkbox type="radio" label="Bayar Nanti" name="payment_status" value="2"
-                                            wire:model.live="payment_status" disabled />
+                                            wire:model.live="payment_status" :disabled="!empty($id)" />
                                     </div>
 
                                     @error('payment_status')
@@ -164,15 +165,28 @@
                     </div>
 
                     <livewire:pages.transactions.table :services="$services" :showActions="false" />
+                    <div>
+                        <div class="flex justify-between px-4 py-2">
+                            <h2 class="text-normal">Total</h2>
+                            <p class="text-2xl font-bold">{{ $this->getFormattedTotal() }}</p>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
-            <div>
-                <div class="flex justify-between px-4 py-2">
-                    <h2 class="text-normal">Total</h2>
-                    <p class="text-2xl font-bold">{{ $this->getFormattedTotal() }}</p>
+            @if ($id)
+            <div class="bg-white p-5 rounded-2xl shadow-md w-full flex flex-col gap-y-5">
+                <div class="flex items-start justify-between">
+                    <x-header title="Riwayat pembayaran" subtitle="Detail pembayaran" />
+
+                    <x-button wire:click="dispatchTo('pages.transactions.add-pay-modal', 'show-modal')" variant="green" :disabled="@$this->transaction->total_paid >= $this->transaction->total">+ Tambah Pembayaran</x-button>
                 </div>
+
+                <x-pages.transactions.pays-table :pays="$pays" />
             </div>
+            @endif
+
         </div>
     </div>
 </div>

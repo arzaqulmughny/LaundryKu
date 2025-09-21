@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Transaction;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Validation\Validator;
 
 class UpdateTransactionRequest extends FormRequest
 {
@@ -11,7 +14,28 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Add custom validation
+     */
+    public function withValidator(Validator $validator)
+    {
+        $validator->after(function () {
+            $relatedTransaction = Transaction::find(request()->route('transaction'));
+
+            // New pays not allowed to greater than bills
+            $currentPaysAmount = (int) $relatedTransaction->total_paid;
+
+            $pays = collect($this->pays);
+            $newPays = (int) $pays->whereNull('id')->sum('amount');
+            $bills = (int) $relatedTransaction->total;
+
+            if (($currentPaysAmount + $newPays) > $bills) {
+                session()->flash('error', 'Pembayaran tidak boleh melebihi jumlah yang ditagihkan!');
+            }
+        });
     }
 
     /**
@@ -22,7 +46,14 @@ class UpdateTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'customer.id' => 'required',
+            'date' => 'required',
+            'due_date' => 'required',
+            'payment_status' => 'required|numeric',
+            'total_paid'     => 'nullable|numeric',
+            'pays' => 'nullable|array',
+            'pays.*.amount' => 'numeric|min:0',
+            'pays.*.date' => 'required|date'
         ];
     }
 }

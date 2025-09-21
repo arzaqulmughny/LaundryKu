@@ -22,7 +22,12 @@ class StoreTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'customer.id' => 'required',
+            'date' => 'required',
+            'due_date' => 'required',
+            'payment_status' => 'required|numeric',
+            'total_paid'     => 'nullable|numeric',
+            'services' => 'required|min:1'
         ];
     }
 }
