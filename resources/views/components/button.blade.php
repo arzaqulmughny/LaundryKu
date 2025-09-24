@@ -12,7 +12,7 @@ $classes = [
 
 <button
     type="{{ $type }}"
-    class="{{ $classes[$variant] }} text-sm cursor-pointer shadow-md disabled:saturate-0 disabled:cursor-not-allowed"
+    class="{{ $classes[$variant] }} text-sm cursor-pointer shadow-md disabled:saturate-0 disabled:cursor-not-allowed w-fit"
     {{ $attributes }}>
     {{ $slot }}
 </button>
