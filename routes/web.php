@@ -3,6 +3,7 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
@@ -31,4 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
     // Transactions
     Route::get('/transactions/{transaction}/export', [TransactionController::class, 'export'])->name('transactions.export');
     Route::resource('transactions', TransactionController::class);
+
+    // Reports
+    Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 });

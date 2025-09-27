@@ -1,4 +1,4 @@
-@props(['label', 'name', 'required' => false, 'value' => null, 'options' => [], 'showLabel' => true])
+@props(['label', 'name', 'required' => false, 'selected' => null, 'options' => [], 'showLabel' => true])
 
 <div class="flex flex-col gap-y-1">
     @if ($showLabel)
@@ -7,8 +7,11 @@
 
     <select name="{{ $name }}" id="{{ $name }}" {{ $attributes }}
             class="w-full text-sm px-3 py-2.5 focus:outline-blue-400 text-slate-800 border-gray-300 border rounded-md bg-white">
+            <option value="">
+                Pilih {{ $label }}
+            </option>
         @foreach ($options as $value => $option)
-            <option value="{{ $value }}">
+            <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }}>
                 {{ $option }}
             </option>
         @endforeach
