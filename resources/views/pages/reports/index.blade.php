@@ -7,9 +7,8 @@
     <x-breadcrumbs
         :links="[
             ['label' => 'Dashboard', 'url' => url('/')],
-            ['label' => 'Pelanggan', 'url' => url('/customers')],
-            ]"
-        current="Kelola Pelanggan" />
+            ['label' => 'Laporan', 'url' => url('/reports')],
+        ]" />
 
     <form class="flex flex-col gap-y-5" method="GET" target="_blank" action="/reports">
         <x-header title="Laporan" subtitle="Dapatkan informasi terkait bisnis Laundry anda" />
