@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Setting;
+use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('appName')) {
     function appName()
@@ -23,5 +24,12 @@ if (!function_exists('appIcon')) {
     {
         $setting = Setting::where('key', 'application_logo')->first();
         return $setting->value ? "storage/{$setting->value}" : "laundryku.png";
+    }
+}
+
+if (!function_exists('role')) {
+    function role($role)
+    {
+        return Auth::check() && (Auth::user()->role == 'DEVELOPER' || in_array(Auth::user()->role, $role));
     }
 }

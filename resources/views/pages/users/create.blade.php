@@ -22,7 +22,7 @@
                 <x-input label="Username" name="username" placeholder="Masukkan username pengguna" required autofocus />
                 <x-input label="Email" name="email" placeholder="Masukkan email pengguna" required autofocus />
                 <x-input label="Password" name="password" placeholder="Masukkan password pengguna" required autofocus />
-                <x-select label="Hak Akses" name="role" required autofocus :options="['ADMIN', 'STAFF']" />
+                <x-select label="Hak Akses" name="role" required autofocus :options="['OWNER' => 'OWNER', 'ADMIN' => 'ADMIN', 'STAFF' => 'STAFF']" />
 
                 <div class="flex space-x-4 justify-between">
                     <a href="/customers">

@@ -15,6 +15,7 @@
             <x-header title="Transaksi" subtitle="Kelola data transaksi" />
 
             <div class="flex justify-end gap-x-5">
+                @role(['OWNER', 'STAFF'])
                 <a href="/transactions/create">
                     <x-button>
                         <div class="flex gap-x-2">
@@ -25,6 +26,7 @@
                         </div>
                     </x-button>
                 </a>
+                @endrole
             </div>
         </div>
 

@@ -58,13 +58,17 @@
     </div>
 
     <div class="flex gap-x-2">
-        <a href="{{ route('transactions.create') }}">
-            <x-button>+ Tambah Pesanan</x-button>
-        </a>
+        @role(['OWNER', 'STAFF'])
+            <a href="{{ route('transactions.create') }}">
+                <x-button>+ Tambah Pesanan</x-button>
+            </a>
+        @endrole
 
-        <a href="/reports">
-            <x-button variant="white">Lihat Laporan</x-button>
-        </a>
+        @role(['OWNER', 'ADMIN'])
+            <a href="/reports">
+                <x-button variant="white">Lihat Laporan</x-button>
+            </a>
+        @endrole
     </div>
 
     <div class="flex flex-col gap-y-4">
