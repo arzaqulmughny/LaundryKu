@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ trim($__env->yieldContent('title')) ? $__env->yieldContent('title') . ' - ' : '' }}LaundryKu
     </title>
+    <link rel="icon" type="image/png" href="{{ appIcon() }}?v=2">
     @vite(['resources/css/app.css'])
     @livewireStyles
 </head>

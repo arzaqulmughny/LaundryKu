@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Login - LaundryKu')
+@section('title', 'Login')
 
 @section('content')
 <div class="bg-slate-100 w-full h-screen flex justify-center items-center">
