@@ -26,7 +26,7 @@
         alert(event.detail[0].message);
     });
 
-    console.log('OK');
+    console.log('OK2');
 </script>
 
 @if(session('success'))
