@@ -25,11 +25,13 @@
     window.addEventListener('show-alert', event => {
         alert(event.detail[0].message);
     });
+
+    console.log('OK');
 </script>
 
 @if(session('success'))
 <script>
-    alert('{{ session('success') }}');
+    alert('{{ session('success') }}');    
 </script>
 @endif
 
