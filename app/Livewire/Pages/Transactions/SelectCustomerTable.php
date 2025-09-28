@@ -14,6 +14,9 @@ class SelectCustomerTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
+        $this->setPerPageVisibilityDisabled(); // hilangkan dropdown per page
+        $this->setPerPageAccepted([5]);        // daftar perPage yang diijinkan
+        $this->setPerPage(5);
     }
 
     public function columns(): array
