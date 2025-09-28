@@ -25,8 +25,6 @@
     window.addEventListener('show-alert', event => {
         alert(event.detail[0].message);
     });
-
-    console.log('OK2');
 </script>
 
 @if(session('success'))
