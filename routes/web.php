@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Livewire\Pages\Transactions\Create;
@@ -35,4 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Reports
     Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+
+    // Settings
+    Route::delete('/settings/reset-all', [SettingController::class, 'resetAll'])->name('settings.resetAll');
+    Route::delete('/settings/{setting}/reset', [SettingController::class, 'reset'])->name('settings.reset');
+    Route::resource('/settings', SettingController::class)->names('settings');
 });
