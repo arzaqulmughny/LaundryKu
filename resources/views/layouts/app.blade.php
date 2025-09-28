@@ -12,6 +12,7 @@
 </head>
 
 <body class="bg-slate-100">
+    @include('layouts.loader')
     @yield('content')
     @livewireScripts
 </body>
@@ -25,6 +26,7 @@
     window.addEventListener('show-alert', event => {
         alert(event.detail[0].message);
     });
+   
 </script>
 
 @if(session('success'))
