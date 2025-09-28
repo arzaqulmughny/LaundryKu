@@ -21,7 +21,7 @@
             @endphp
 
             @if (!empty($type))
-                @include('pages.reports.fields.' . $type)
+                @include('pages.reports.fields.' . strtolower($type))
             @endif
 
             <input type="text" class="hidden" name="submit" value="true" />
