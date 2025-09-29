@@ -11,8 +11,8 @@
 
 <div class="flex bg-white p-5 rounded-md shadow-md gap-x-4 justify-between">
     <div class="flex flex-col gap-y-1">
-        <h1 class="card__title text-gray-600 text-sm whitespace-nowrap">{{ $title }}</h1>
-        <p class="font-bold text-2xl">{{ $value }}</p>
+        <h1 class="text-xs whitespace-nowrap text-slate-700">{{ $title }}</h1>
+        <p class="font-bold text-base md:text-2xl">{{ $value }}</p>
         <p class="text-xs text-green-600">{{ $subtitle }}</p>
     </div>
 

@@ -33,21 +33,21 @@
 
             @foreach ($services as $index => $service)
             <tr wire:key="{{ $index }}" class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <th scope="row" class="px-6 py-1 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {{ $service['service_name'] }}
                 </th>
-                <td class="px-6 py-4">
+                <td class="px-6 py-1">
                     <x-input type="number" name="quantity" label="" wire:model.live="$parent.services.{{ $index }}.quantity" />
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-1">
                     {{ $service['service_name'] }}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-1">
                     {{ $this->getSubtotalIndex($index) }}
                 </td>
 
                 @if ($showActions)
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-1">
                         <x-button variant="danger" wire:click="$dispatch('delete-service', {selectedIndex: {{ $index }} })">Hapus</x-button>
                     </td>
                 @endif

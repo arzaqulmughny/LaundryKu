@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content-inner')
-<div class="p-10 flex flex-col gap-y-10">
+<div class="p-4 md:px-5 md:py-7 flex flex-col gap-y-6">
     <div class="grid gap-6 grid-cols-[repeat(auto-fit,minmax(290px,1fr))]">
         <x-pages.dashboard.card-stats
             :title="$todayOrders['label']"
@@ -57,7 +57,7 @@
         </x-pages.dashboard.card-stats>
     </div>
 
-    <div class="flex gap-x-2">
+    <div class="flex gap-x-4">
         @role(['OWNER', 'STAFF'])
             <a href="{{ route('transactions.create') }}">
                 <x-button>+ Tambah Pesanan</x-button>

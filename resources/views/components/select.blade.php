@@ -6,7 +6,7 @@
     @endif
 
     <select name="{{ $name }}" id="{{ $name }}" {{ $attributes }}
-            class="w-full text-sm px-3 py-2.5 focus:outline-blue-400 text-slate-800 border-gray-300 border rounded-md bg-white">
+            class="w-full text-xs px-3 py-2 shadow-md focus:outline-blue-400 text-slate-800 rounded-md bg-white">
             <option value="">
                 Pilih {{ $label }}
             </option>

@@ -13,7 +13,7 @@
         <div class="flex flex-col gap-y-5">
             <x-header :title="$pageTitle" :subtitle="$pageSubtitle" />
 
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center flex-wrap gap-3">
                 <a href="/transactions">
                     <x-button variant="white">
                         <div class="flex items-center gap-x-2">
@@ -26,7 +26,7 @@
                     </x-button>
                 </a>
 
-                <div class="flex items-center gap-x-2">
+                <div class="flex items-center gap-2 flex-wrap">
                     @if ($id == null)
                     <x-button variant="danger" wire:click="resetForm">Reset</x-button>
                     @endif
@@ -35,11 +35,11 @@
                     <x-select label="Status" name="status" :options="$statusEnums" :showLabel="false" value="$status" wire:model="status" />
 
                     <a href="{{ $this->getWhatsappMessageLink() }}" target="_blank"><x-button variant="green">
-                            <div class="flex items-center gap-x-1">
+                            <div class="flex items-center gap-x-4 text-nowrap">
                                 <svg class="w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd" d="M3 5.983C3 4.888 3.895 4 5 4h14c1.105 0 2 .888 2 1.983v8.923a1.992 1.992 0 0 1-2 1.983h-6.6l-2.867 2.7c-.955.899-2.533.228-2.533-1.08v-1.62H5c-1.105 0-2-.888-2-1.983V5.983Zm5.706 3.809a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Zm2.585.002a1 1 0 1 1 .003 1.414 1 1 0 0 1-.003-1.414Zm5.415-.002a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Z" clip-rule="evenodd" />
                                 </svg>
-                                Kirim Whatsapp
+                                    Kirim Whatsapp
                             </div>
                         </x-button></a>
 
@@ -83,11 +83,9 @@
                                 <div class="flex gap-x-3 flex-nowrap">
                                     <div class="border border-gray-300 px-3 py-2 rounded-md flex w-full">
                                         <input
-                                            class="text-sm text-nowrap overflow-ellipsis overflow-hidden focus:outline-none w-full"
+                                            class="text-xs text-nowrap overflow-ellipsis overflow-hidden focus:outline-none w-full"
                                             placeholder="Pilih Pelanggan" readonly="true"
                                             value="{{ @$customer->name }}" />
-
-
                                         @if(empty($id))
                                         <button wire:click="clearCustomer" type="button"
                                             class="cursor-pointer flex items-center justify-center hover:brightness-95"><svg
@@ -165,10 +163,11 @@
                     </div>
 
                     <livewire:pages.transactions.table :services="$services" :showActions="false" />
+
                     <div>
                         <div class="flex justify-between px-4 py-2">
-                            <h2 class="text-normal">Total</h2>
-                            <p class="text-2xl font-bold">{{ $this->getFormattedTotal() }}</p>
+                            <h2 class="text-sm text-slate-700">Total</h2>
+                            <p class="text-xl font-bold text-slate-700">{{ $this->getFormattedTotal() }}</p>
                         </div>
                     </div>
                 </div>
@@ -177,9 +176,8 @@
 
             @if ($id)
             <div class="bg-white p-5 rounded-2xl shadow-md w-full flex flex-col gap-y-5">
-                <div class="flex items-start justify-between">
+                <div class="flex items-start justify-between flex-wrap gap-2">
                     <x-header title="Riwayat pembayaran" subtitle="Detail pembayaran" />
-
                     <x-button wire:click="dispatchTo('pages.transactions.add-pay-modal', 'show-modal')" variant="green" :disabled="@$this->transaction->total_paid >= $this->transaction->total">+ Tambah Pembayaran</x-button>
                 </div>
 
