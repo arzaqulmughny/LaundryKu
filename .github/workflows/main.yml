@@ -31,8 +31,7 @@ jobs:
 
       - name: Copy public files to root
         run: |
-          rm -rf build
-          rsync -av public/ ./
+          rsync -av --delete public/ ./
 
       - name: Clean up unnecessary files
         run: |
