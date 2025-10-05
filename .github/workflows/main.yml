@@ -23,18 +23,12 @@ jobs:
           npm install
           npm run build
 
-      - name: Prepare public folder
-        run: |
-          rm -rf build-upload
-          mkdir build-upload
-          cp -r public/* build-upload/
-
       - name: Upload to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: public/build-upload/
-          server-dir: /
+          local-dir: public/build
+          server-dir: /build
           git-ftp-args: --delete
