@@ -23,7 +23,7 @@ class LoginTest extends TestCase
             'password' => 'password'
         ]);
 
-        $response->assertStatus(419); // Redirect to home
+        $response->assertStatus(302); // Redirect to home
     }
 
     /**
@@ -38,7 +38,7 @@ class LoginTest extends TestCase
             'password' => 'invalid-password'
         ]);
 
-        $response->assertStatus(419); // Redirect back with error message
+        $response->assertStatus(302); // Redirect back with error message
     }
 
     /**
@@ -51,6 +51,6 @@ class LoginTest extends TestCase
             'password' => ''
         ]);
 
-        $response->assertStatus(419); // Redirect back with error message
+        $response->assertStatus(302); // Redirect back with error message
     }
 }
