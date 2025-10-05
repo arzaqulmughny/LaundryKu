@@ -31,6 +31,7 @@ jobs:
 
       - name: Copy public files to root
         run: |
+          rm -rf build
           cp -r public/* ./
 
       - name: Clean up unnecessary files
