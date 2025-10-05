@@ -23,7 +23,7 @@ jobs:
 
       - name: Install NPM dependencies & build assets
         run: |
-          npm ci
+          npm install
           npm run build
 
       - name: Move public files to root
