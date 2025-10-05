@@ -5,7 +5,7 @@
         @include('components.sidebar')
     </div>
 
-    <div class="flex flex-col w-full">
+    <div class="flex flex-col w-full overflow-auto">
         @include('components.topbar')
         @yield('content-inner')
     </div>
