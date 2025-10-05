@@ -36,11 +36,6 @@ jobs:
       - name: Clean up unnecessary files
         run: |
           rm -rf node_modules
-          rm -rf tests
-          rm -rf .github
-          rm -rf package*.json vite.config.* tailwind.config.* postcss.config.*
-          rm -rf resources
-          rm -rf storage
           rm -rf bootstrap/cache/*.php
 
       - name: Push built files to master branch
