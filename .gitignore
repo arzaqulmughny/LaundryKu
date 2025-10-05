@@ -23,5 +23,10 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 package-lock.json
-
 composer.lock
+.htaccess
+favicon.ico
+index.php
+laundryku.png
+public/*
+robots.txt
