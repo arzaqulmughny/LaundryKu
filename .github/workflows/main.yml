@@ -47,7 +47,6 @@ jobs:
       - name: Run tests
         run: php artisan test --env=testing
         env:
-          APP_KEY: base64:$(php -r "echo base64_encode(random_bytes(32));")
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
