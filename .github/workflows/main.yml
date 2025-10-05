@@ -32,7 +32,7 @@ jobs:
       - name: Copy public files to root
         run: |
           rm -rf build
-          cp -r public/* ./
+          rsync -av public/ ./
 
       - name: Clean up unnecessary files
         run: |
