@@ -1,4 +1,4 @@
-name: Build and Deploy Laravel via FTP
+name: Build JS Assets
 
 on:
   push:
@@ -13,31 +13,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install PHP dependencies
-        run: composer install
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Build Tailwind/Vite assets
+      - name: Build JS assets
         run: |
           npm install
           npm run build
 
-      - name: Prepare public folder
-        run: |
-          rm -rf public/build-upload
-          mkdir public/build-upload
-          cp -r public/* public/build-upload/
-
       - name: Upload to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.6.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: public/build-upload/
-          server-dir: /
+          local-dir: public/build/
+          server-dir: build/
           git-ftp-args: --delete
