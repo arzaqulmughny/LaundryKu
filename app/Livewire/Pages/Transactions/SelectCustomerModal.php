@@ -21,10 +21,13 @@ class SelectCustomerModal extends Component
     }
 
     #[On('select')]
-    public function onSelect($id)
+    public function onSelect($id = null)
     {
         $this->show = false;
-        $this->dispatch('select-customer', id: $id)->to(Create::class);
+
+        if ($id) {
+            $this->dispatch('select-customer', id: $id)->to(Create::class);
+        }
     }
 
     public function render()

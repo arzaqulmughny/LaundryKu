@@ -37,7 +37,7 @@
                     {{ $service['service_name'] }}
                 </th>
                 <td class="px-6 py-1">
-                    <x-input type="number" name="quantity" label="" wire:model.live="$parent.services.{{ $index }}.quantity" />
+                    <x-input type="number" name="quantity" label="" wire:model.defer="$parent.services.{{ $index }}.quantity" wire:key="{{ $index }}" />
                 </td>
                 <td class="px-6 py-1">
                     {{ $service['service_name'] }}
