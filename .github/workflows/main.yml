@@ -1,4 +1,4 @@
-name: Build and Deploy Laravel via FTP
+name: Build JS Assets
 
 on:
   push:
@@ -13,9 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install PHP dependencies
-        run: composer install
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -28,9 +25,9 @@ jobs:
 
       - name: Prepare public folder
         run: |
-          rm -rf public/build-upload
-          mkdir public/build-upload
-          cp -r public/* public/build-upload/
+          rm -rf build-upload
+          mkdir build-upload
+          cp -r public/* build-upload/
 
       - name: Upload to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
