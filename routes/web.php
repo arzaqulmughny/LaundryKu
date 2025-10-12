@@ -3,10 +3,12 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserController;
 use App\Livewire\Pages\Transactions\Create;
 use Illuminate\Support\Facades\Route;
@@ -42,4 +44,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/settings/reset-all', [SettingController::class, 'resetAll'])->name('settings.resetAll');
     Route::delete('/settings/{setting}/reset', [SettingController::class, 'reset'])->name('settings.reset');
     Route::resource('/settings', SettingController::class)->names('settings');
+
+    // Materials
+    Route::resource('/materials', MaterialController::class)->names('materials');
+
+    // Units
+    Route::resource('/units', UnitController::class)->names('units');
 });
