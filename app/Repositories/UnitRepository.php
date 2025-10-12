@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Http\Resources\UnitResource;
 use App\Models\Customer;
 use App\Models\Unit;
 use Illuminate\Support\Facades\DB;
@@ -33,5 +34,13 @@ class UnitRepository
     public static function delete(Unit $unit): bool
     {
         return $unit->delete();
+    }
+
+    /**
+     * Get all units
+     */
+    public static function all()
+    {
+        return UnitResource::collection(Unit::all());
     }
 }
