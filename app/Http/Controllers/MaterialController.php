@@ -23,7 +23,7 @@ class MaterialController extends Controller
      */
     public function create(Request $request)
     {
-        $units = UnitRepository::all()->toArray($request);
+        $units = UnitRepository::all()->pluck('name', 'code');
         return view('pages.materials.create', compact('units'));
     }
 
@@ -53,7 +53,7 @@ class MaterialController extends Controller
      */
     public function edit(Request $request, Material $material)
     {
-        $units = UnitRepository::all()->toArray($request);
+        $units = UnitRepository::all()->pluck('name', 'code');
         return view('pages.materials.edit', compact('material', 'units'));
     }
 

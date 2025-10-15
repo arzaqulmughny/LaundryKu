@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Database\Factories\TransactionFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +16,8 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             CustomerSeeder::class,
             SettingSeeder::class,
-            TransactionSeeder::class
+            TransactionSeeder::class,
+            MaterialSeeder::class,
         ]);
     }
 }

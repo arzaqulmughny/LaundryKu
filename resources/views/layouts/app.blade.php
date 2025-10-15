@@ -15,6 +15,7 @@
     @include('layouts.loader')
     @yield('content')
     @livewireScripts
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 @vite(['resources/js/app.js'])

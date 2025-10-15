@@ -18,9 +18,7 @@
         @endif
     </div>
 
-    @error($name)
-    <p class="text-red-500 text-xs">{{ \Illuminate\Support\Str::ucfirst($message) }}</p>
-    @enderror
+    <p class="text-red-500 text-xs">@error($name){{ \Illuminate\Support\Str::ucfirst($message) }}@enderror</p>
 </div>
 
 @once

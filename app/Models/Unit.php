@@ -14,4 +14,12 @@ class Unit extends Model
         'code',
         'name',
     ];
+
+    /**
+     * Get options for select
+     */
+    public static function getOptionsForSelect(): array
+    {
+        return self::pluck('name', 'code')->toArray();
+    }
 }

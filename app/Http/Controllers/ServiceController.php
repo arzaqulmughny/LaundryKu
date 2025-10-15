@@ -6,6 +6,7 @@ use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 use App\Models\Service;
 use App\Repositories\ServiceRepository;
+use Exception;
 
 class ServiceController extends Controller
 {
@@ -22,7 +23,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('pages.services.create');
+        return view('pages.services.upsert');
     }
 
     /**
@@ -33,8 +34,8 @@ class ServiceController extends Controller
         try {
             ServiceRepository::store($request->validated());
             return redirect()->route('services.index')->with('success', 'Data layanan berhasil disimpan');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error', $th->getMessage());
+        } catch (Exception $exception) {
+            return redirect()->back()->with('error', $exception->getMessage());
         }
     }
 
@@ -51,7 +52,8 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        return view('pages.services.edit', compact('service'));
+        $service->load('materials');
+        return view('pages.services.upsert', compact('service'));
     }
 
     /**
