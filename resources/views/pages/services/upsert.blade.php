@@ -14,7 +14,7 @@
         <x-header title="Layanan" :subtitle="@$service ? 'Ubah Layanan' : 'Tambah Layanan'" />
 
         <div class="flex justify-between items-center flex-wrap gap-3">
-            <a href="/transactions">
+            <a href="{{ route('services.index') }}">
                 <x-button variant="white">
                     <div class="flex items-center gap-x-2">
                         <svg class="w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
